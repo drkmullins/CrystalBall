@@ -65,6 +65,12 @@
     return YES;
 }
 
+- (void)clearPredictionLabel
+{
+    self.predictionLabel.text = nil;
+    self.predictionLabel.alpha = 0.0;
+}
+
 - (void)makePrediction
 {
     NSUInteger index = arc4random_uniform(self.predictionArray.count);
@@ -80,8 +86,7 @@
 {
     if ( motion == UIEventSubtypeMotionShake)
     {
-        self.predictionLabel.text = nil;
-        self.predictionLabel.alpha = 0.0;
+        [self clearPredictionLabel];
         [self makePrediction];
     }
 }
@@ -93,8 +98,7 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.predictionLabel.text = nil;
-    self.predictionLabel.alpha = 0.0;
+    [self clearPredictionLabel];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
